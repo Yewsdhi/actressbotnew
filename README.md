@@ -1,6 +1,6 @@
 # Actress Arena Gold 🎬
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/YOUR_GITHUB_USERNAME/Actress-Arena-Gold)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/Yewsdhi/actressbotnew)
 
 > **Before using the button:** upload this project to a public GitHub repository named `Actress-Arena-Gold`, then replace `YOUR_GITHUB_USERNAME` in this README with your GitHub username. The button cannot deploy a ZIP file directly.
 
