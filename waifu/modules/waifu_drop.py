@@ -102,8 +102,8 @@ async def _send_drop(chat_id: int, bot) -> None:
             chat_id=chat_id,
             photo=char["img_url"],
             caption=(
-                f"✨ <b>A new character appeared!</b>\n\n"
-                f"<i>Use /guess [name] to add them to your harem!</i>"
+                f"✨ <b>A new Bollywood actress appeared!</b>\n\n"
+                f"<i>Use /guess [name] to add her to your collection!</i>"
             ),
             parse_mode=ParseMode.HTML,
         )
@@ -184,13 +184,13 @@ async def guess(update: Update, context: CallbackContext) -> None:
     # Already claimed in this drop session
     if chat_id in _claimed:
         await update.message.reply_text(
-            "❌ Already claimed by someone else! Wait for the next character."
+            "❌ Already claimed by someone else! Wait for the next actress."
         )
         return
 
     user_guess = " ".join(context.args).strip().lower() if context.args else ""
     if not user_guess:
-        await update.message.reply_text("Usage: /guess <character name>")
+        await update.message.reply_text("Usage: /guess <actress name>")
         return
 
     # Reject obviously malicious input
@@ -249,7 +249,7 @@ async def guess(update: Update, context: CallbackContext) -> None:
     # ── Success reply ─────────────────────────────────────────────────────────
     kb = InlineKeyboardMarkup([[
         InlineKeyboardButton(
-            "📖 My Harem",
+            "📖 My Actress Collection",
             switch_inline_query_current_chat=f"collection.{user_id}",
         )
     ]])
@@ -257,9 +257,9 @@ async def guess(update: Update, context: CallbackContext) -> None:
         f'🎉 <a href="tg://user?id={user_id}">{escape(u.first_name)}</a> '
         f'guessed it!\n\n'
         f'🌸 <b>{escape(char["name"])}</b>\n'
-        f'📺 {escape(char["anime"])}\n'
+        f'🎬 {escape(char.get("category", "Bollywood"))}\n'
         f'💎 {char["rarity"]}\n\n'
-        f'Added to your harem! +{_XP_PER_GUESS} XP ✨',
+        f'Added to your actress collection! +{_XP_PER_GUESS} XP ✨',
         parse_mode=ParseMode.HTML,
         reply_markup=kb,
     )
@@ -270,18 +270,18 @@ async def guess(update: Update, context: CallbackContext) -> None:
 async def fav(update: Update, context: CallbackContext) -> None:
     user_id = update.effective_user.id
     if not context.args:
-        await update.message.reply_text("Usage: /fav <character_id>")
+        await update.message.reply_text("Usage: /fav <actress_id>")
         return
 
     char_id  = context.args[0]
     user_doc = await user_collection.find_one({"id": user_id})
     if not user_doc:
-        await update.message.reply_text("You haven't guessed any characters yet.")
+        await update.message.reply_text("You haven't collected any actresses yet.")
         return
 
     char = next((c for c in user_doc.get("characters", []) if c["id"] == char_id), None)
     if not char:
-        await update.message.reply_text("That character isn't in your collection.")
+        await update.message.reply_text("That actress isn't in your collection.")
         return
 
     await user_collection.update_one({"id": user_id}, {"$set": {"favorites": [char_id]}})
