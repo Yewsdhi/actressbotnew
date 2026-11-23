@@ -1,0 +1,27 @@
+{
+  "name": "Actress Arena Gold",
+  "description": "Telegram Bollywood actress collection and guessing game bot.",
+  "keywords": ["telegram", "bot", "game", "bollywood", "actress"],
+  "stack": "heroku-24",
+  "buildpacks": [
+    { "url": "heroku/python" }
+  ],
+  "env": {
+    "BOT_TOKEN": { "description": "Telegram bot token from @BotFather", "required": true },
+    "BOT_USERNAME": { "description": "Bot username without @", "required": true },
+    "OWNER_ID": { "description": "Your numeric Telegram user ID", "required": true },
+    "SUDO_IDS": { "description": "Optional comma-separated admin Telegram IDs", "required": false, "value": "" },
+    "GROUP_ID": { "description": "Telegram log group ID; bot must be a member", "required": true },
+    "CHARA_CHANNEL_ID": { "description": "Telegram actress-card channel ID; bot must be an admin", "required": true },
+    "MONGO_URI": { "description": "MongoDB connection URI", "required": true },
+    "DB_NAME": { "description": "MongoDB database name", "required": false, "value": "actress_arena_gold" },
+    "SUPPORT_CHAT": { "description": "Optional support chat username", "required": false, "value": "" },
+    "UPDATE_CHAT": { "description": "Optional updates channel username", "required": false, "value": "" },
+    "PHOTO_URLS": { "description": "Optional comma-separated fallback photo URLs", "required": false, "value": "" },
+    "DROP_INTERVAL_MINUTES": { "description": "Timed drop interval in minutes", "required": false, "value": "15" },
+    "DEFAULT_MSG_FREQUENCY": { "description": "Messages per drop", "required": false, "value": "100" }
+  },
+  "formation": {
+    "worker": { "quantity": 1, "size": "basic" }
+  }
+}

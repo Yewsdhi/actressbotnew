@@ -1,5 +1,9 @@
 # Actress Arena Gold 🎬
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/YOUR_GITHUB_USERNAME/Actress-Arena-Gold)
+
+> **Before using the button:** upload this project to a public GitHub repository named `Actress-Arena-Gold`, then replace `YOUR_GITHUB_USERNAME` in this README with your GitHub username. The button cannot deploy a ZIP file directly.
+
 A Telegram group collection game adapted from Waifu Catcher. Players collect Bollywood actresses by guessing their names, earn coins, trade cards, duel, and compete on leaderboards.
 
 ## Features
@@ -65,7 +69,7 @@ Or post an image in the configured actress channel with this caption, then reply
 `ID` is optional. `Category` may also be `Actress Category`; legacy `Anime` captions are accepted for compatibility.
 
 ## Heroku deployment
-This project uses a worker process (not a web server). Create a Heroku app, connect the repository, set all required Config Vars listed above, add a MongoDB service/URI, then deploy. The included `Procfile` starts the worker with `python -m waifu`.
+This project uses a worker process (not a web server). Upload this folder to a **public GitHub repository** first, then use the Deploy button above. The `app.json` defines the required Config Vars and requests one worker dyno. Confirm the environment values on Heroku, provide a reachable MongoDB URI, and deploy. The included `Procfile` starts the worker with `python -m waifu`. If the worker is not running after deployment, open Heroku **Resources** and enable the `worker` dyno.
 
 ## Important security note
 Never commit `.env`. Keep bot tokens and database credentials in platform Config Vars. If a token or database URI has been shared publicly, rotate it immediately.
