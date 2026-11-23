@@ -24,7 +24,7 @@ class Config:
     GROUP_ID:         int       = int(_req("GROUP_ID"))
     CHARA_CHANNEL_ID: int       = int(_req("CHARA_CHANNEL_ID"))
     mongo_url:        str       = _req("MONGO_URI")
-    DB_NAME:          str       = os.environ.get("DB_NAME", "waifu_bot")
+    DB_NAME:          str       = os.environ.get("DB_NAME", "actress_arena_gold")
     SUPPORT_CHAT:     str       = os.environ.get("SUPPORT_CHAT", "")
     UPDATE_CHAT:      str       = os.environ.get("UPDATE_CHAT",  "")
     PHOTO_URL:        list[str] = [u.strip() for u in
@@ -38,7 +38,7 @@ class Config:
     DUEL_WIN_COINS:  int = 150
     DUEL_LOSE_COINS: int = 30
 
-    # Rarity map (used by both upload paths)
+    # Actress rarity map (used by both upload paths)
     RARITY_MAP: dict[int, str] = {
         1: "⚪ Common",
         2: "🟣 Rare",

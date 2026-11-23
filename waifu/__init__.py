@@ -42,7 +42,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 _mongo = AsyncIOMotorClient(Config.mongo_url)
 db     = _mongo[Config.DB_NAME]
 
-collection                   = db["anime_characters"]
+collection                   = db["actresses"]
 user_collection              = db["users"]
 user_totals_collection       = db["chat_settings"]
 group_user_totals_collection = db["group_user_totals"]
@@ -50,7 +50,8 @@ top_global_groups_collection = db["top_groups"]
 pm_users                     = db["pm_users"]
 market_collection            = db["market_listings"]
 active_drops_collection      = db["active_drops"]
-waifu_collection             = collection
+actress_collection           = collection
+waifu_collection             = collection  # backwards-compatible alias
 
 from telegram.ext import Application
 
@@ -93,5 +94,5 @@ __all__ = [
     "GROUP_ID", "CHARA_CHANNEL_ID", "PHOTO_URL", "SUPPORT_CHAT", "UPDATE_CHAT",
     "collection", "user_collection", "user_totals_collection",
     "group_user_totals_collection", "top_global_groups_collection",
-    "pm_users", "market_collection", "active_drops_collection", "waifu_collection",
+    "pm_users", "market_collection", "active_drops_collection", "waifu_collection", "actress_collection",
 ]
